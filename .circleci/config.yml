@@ -12,7 +12,7 @@ jobs:
       - checkout
       - run:
           name: Listing project file
-          command: echo "Current user: $(whoami)"
+          command: echo "$(whoami)"
 
       - run:
           name: Transfer project files
