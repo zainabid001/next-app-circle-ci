@@ -17,16 +17,16 @@ jobs:
       - run:
           name: Transfer project files
           command: |  
-            scp -o StrictHostKeyChecking=no -r ./* $user@$instance_ip:/home/ubuntu/develop/
+            scp -o StrictHostKeyChecking=no -r ./* $user@$instance_ip:/home/ec2-user/develop/
       - run:
           name: Install dependencies
           command: |  
-            ssh -o StrictHostKeyChecking=no $user@$instance_ip "cd /home/ubuntu/develop/ && npm ci"
+            ssh -o StrictHostKeyChecking=no $user@$instance_ip "cd /home/ec2-user/develop/ && npm ci"
       - run:
           name: Build project
           command: |  
-            ssh -o StrictHostKeyChecking=no $user@$instance_ip "cd /home/ubuntu/develop/ && npm run build"
-            ssh -o StrictHostKeyChecking=no $user@$instance_ip "cd /home/ubuntu/develop/ && pm2 restart 0"
+            ssh -o StrictHostKeyChecking=no $user@$instance_ip "cd /home/ec2-user/develop/ && npm run build"
+
       - run:
           name: Execute remote commands
           command: |
