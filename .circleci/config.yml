@@ -11,19 +11,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Create env
-          command: |
-            touch .env
-            echo $HOST 
-            echo $HOST > .env
-            echo $port
-            echo $port >> .env
-      
-      - run:
           name: Listing project file
-          command: |
-              cat .env
-              echo "Current user: $(whoami)"
+          command: echo "Current user: $(whoami)"
 
       - run:
           name: Transfer project files
@@ -42,8 +31,6 @@ jobs:
           name: Execute remote commands
           command: |
             ssh -o StrictHostKeyChecking=no $user@$instance_ip "echo 'pipeline completed'"
-            # ssh -o StrictHostKeyChecking=no $user@$instance_ip "bash /home/ubuntu/pot.sh > ~/develop/test.txt"
-            ssh -o StrictHostKeyChecking=no $user@$instance_ip "sudo netstat -tnlp > ~/develop/netstat_.txt"
       - run:
           name: Cleanup
           command: echo "Build and deployment completed successfully for the React App. Cleaning up..."
